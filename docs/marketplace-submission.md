@@ -1,6 +1,6 @@
 # Firefox marketplace submission
 
-Prepared September 14, 2026 for Tab Leak Guard 0.1.1. This guide prepares the submission; it does not record a completed upload or approval.
+Prepared September 14, 2026 for Tab Leak Guard 0.1.1. The submission has now been completed and is awaiting Mozilla review; see the [submission evidence](evidence/0.1.1-amo-submission.md). The instructions below remain a guide for reproducing the process, not evidence of approval.
 
 ## Submit through the existing add-on
 

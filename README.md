@@ -14,7 +14,7 @@
 
 Tab Leak Guard is a Firefox extension that watches for sustained resource-growth patterns, explains concerning tabs, and lets you review an unload or reload before it happens. Analysis stays in your browser. There are no analytics, accounts, or runtime network services.
 
-**Status:** version 0.1.1 is a release candidate. Marketplace publication and broader browser validation are pending. Automatic recovery is disabled; every recovery action requires your confirmation.
+**Status:** version 0.1.1 was submitted to Mozilla as an experimental desktop release and is awaiting review. Marketplace publication and broader browser validation are pending. Automatic recovery is disabled; every recovery action requires your confirmation.
 
 [Cameron Amer](https://www.cameronamer.com) · [Getting started](#getting-started) · [How it works](#how-it-works) · [Development](#development) · [Privacy](docs/privacy.md) · [Contributing](CONTRIBUTING.md)
 
@@ -42,7 +42,7 @@ Pure JavaScript heap leaks, detached DOM, workers, GPU/media allocations, and br
 
 ## Getting started
 
-The recorded signed build is 0.1.0 for self-distribution. The current 0.1.1 candidate still needs Mozilla signing and marketplace publication. A public AMO installation link will be added after publication is verified.
+The recorded signed build is 0.1.0 for self-distribution. Version 0.1.1 has been submitted with its matching source archive and is awaiting Mozilla review. See the [submission record](docs/evidence/0.1.1-amo-submission.md). A public AMO installation link will be added after publication is verified.
 
 To try the candidate locally:
 
