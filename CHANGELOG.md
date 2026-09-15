@@ -2,6 +2,11 @@
 
 All notable user-visible and release-engineering changes are recorded here. Versions follow the Firefox extension version rules.
 
+## Unreleased
+
+- Published the public GitHub repository with installation/development documentation, contribution and issue templates, private vulnerability reporting, and a marketplace submission guide.
+- Updated the development-only `adm-zip` dependency from 0.6.0 to 0.6.1 so the current dependency audit no longer flags GHSA-vwc7-r8mq-g2x9. The extension runtime is unchanged.
+
 ## 0.1.1 — 2026-08-30
 
 ### Safety
