@@ -60,7 +60,9 @@ Detection is heuristic. Firefox does not expose exact per-tab memory through thi
 
 **License:** MIT
 
-**Homepage/source:** https://github.com/caamer20/tab-leak-guard
+**Homepage:** https://www.cameronamer.com
+
+**Source:** https://github.com/caamer20/tab-leak-guard
 
 **Support:** https://github.com/caamer20/tab-leak-guard/issues
 

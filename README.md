@@ -16,7 +16,7 @@ Tab Leak Guard is a Firefox extension that watches for sustained resource-growth
 
 **Status:** version 0.1.1 is a release candidate. Marketplace publication and broader browser validation are pending. Automatic recovery is disabled; every recovery action requires your confirmation.
 
-[Getting started](#getting-started) · [How it works](#how-it-works) · [Development](#development) · [Privacy](docs/privacy.md) · [Contributing](CONTRIBUTING.md)
+[Cameron Amer](https://www.cameronamer.com) · [Getting started](#getting-started) · [How it works](#how-it-works) · [Development](#development) · [Privacy](docs/privacy.md) · [Contributing](CONTRIBUTING.md)
 
 ## Why Tab Leak Guard?
 
