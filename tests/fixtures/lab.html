@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leak fixture</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <div><p class="eyebrow">Controlled fixture</p><h1 id="title">Loading…</h1><p id="description"></p></div>
+      <a href="index.html">All fixtures</a>
+    </header>
+    <main>
+      <section class="dashboard">
+        <div><span>Mode</span><strong id="mode">—</strong></div>
+        <div><span>Live DOM nodes</span><strong id="dom-count">0</strong></div>
+        <div><span>Allocated arrays</span><strong id="array-count">0</strong></div>
+        <div><span>Resource requests</span><strong id="request-count">0</strong></div>
+        <div><span>Elapsed</span><strong id="elapsed">0s</strong></div>
+      </section>
+      <section class="controls">
+        <button id="toggle">Pause fixture</button>
+        <button id="burst">Run one burst</button>
+        <button id="release">Release fixture data</button>
+        <button id="audio" hidden>Start audio</button>
+      </section>
+      <section id="form-zone" class="form-zone" hidden>
+        <label>Unsaved draft <textarea placeholder="Type here to mark this tab dirty"></textarea></label>
+      </section>
+      <section id="arena" class="arena" aria-label="Generated fixture content"></section>
+      <section class="log"><h2>Fixture events</h2><ol id="events"></ol></section>
+    </main>
+    <script src="lab.js"></script>
+  </body>
+</html>

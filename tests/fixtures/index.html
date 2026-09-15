@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tab Leak Guard fixture lab</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="index-page">
+    <main class="index-shell">
+      <p class="eyebrow">Tab Leak Guard</p>
+      <h1>Deterministic fixture lab</h1>
+      <p class="lede">Use these pages to verify detection, false-positive resistance, and reset protections. Start the server with <code>npm run fixtures</code>.</p>
+      <div class="fixture-grid">
+        <a href="lab.html?mode=stable"><strong>Stable small DOM</strong><span>Expected: healthy after warmup</span></a>
+        <a href="lab.html?mode=stable-large"><strong>Stable large DOM</strong><span>Expected: healthy despite size</span></a>
+        <a href="lab.html?mode=pathological-dom"><strong>Pathological DOM budget</strong><span>Expected: censored/degraded recount without repeated long tasks</span></a>
+        <a href="lab.html?mode=dom-leak"><strong>Retained DOM growth</strong><span>Expected: confirmed after warmup</span></a>
+        <a href="lab.html?mode=burst-release"><strong>Burst and release</strong><span>Expected: no confirmation</span></a>
+        <a href="lab.html?mode=churn"><strong>Mutation churn</strong><span>Expected: no confirmation</span></a>
+        <a href="lab.html?mode=resources"><strong>Resource accumulation</strong><span>Expected: watching/suspected</span></a>
+        <a href="lab.html?mode=js-only"><strong>Pure JavaScript allocation</strong><span>Expected limitation: often undetected</span></a>
+        <a href="lab.html?mode=stalls"><strong>Visible responsiveness stalls</strong><span>Expected: additional evidence only</span></a>
+        <a href="lab.html?mode=dirty"><strong>Edited-input protection</strong><span>Expected: manual warning / no auto-reset</span></a>
+        <a href="lab.html?mode=beforeunload"><strong>beforeunload protection</strong><span>Expected: discard blocked by Firefox</span></a>
+        <a href="lab.html?mode=audio"><strong>Audible tab protection</strong><span>Expected: no auto-reset while audible</span></a>
+      </div>
+    </main>
+  </body>
+</html>

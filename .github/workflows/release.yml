@@ -1,0 +1,36 @@
+name: build-release-candidate
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "24.2.0"
+
+jobs:
+  release-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run audit:production
+      - run: npm run audit:development
+      - run: npm run release:reproducible
+      - run: npm run release
+      - run: npm run release:verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tab-leak-guard-release-candidate-${{ github.ref_name }}
+          path: artifacts/releases/**
+          if-no-files-found: error
+          retention-days: 90
+      # Signing stays in AMO. This workflow deliberately has no signing or publish secret.

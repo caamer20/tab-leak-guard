@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Tab Leak Guard">
+  <defs>
+    <linearGradient id="g" x1="15" y1="8" x2="82" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#78F0CD"/>
+      <stop offset="1" stop-color="#3A67F7"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="80" height="80" rx="22" fill="#101827"/>
+  <path d="M48 20 73 30v18c0 16.7-10.7 26.8-25 32-14.3-5.2-25-15.3-25-32V30l25-10Z" fill="url(#g)"/>
+  <path d="M38 48.5 45 56l14-17" fill="none" stroke="#101827" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="72" cy="25" r="9" fill="#FFB84D" stroke="#101827" stroke-width="4"/>
+</svg>

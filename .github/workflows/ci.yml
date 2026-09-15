@@ -1,0 +1,91 @@
+name: verify-extension
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "24.2.0"
+
+jobs:
+  quality:
+    name: Types, tests, coverage, and Mozilla lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run check:version
+      - run: npm run check
+      - run: npm run test:coverage
+      - run: npm run lint:webext
+      - run: npm run audit:package
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: coverage/
+          if-no-files-found: warn
+          retention-days: 14
+
+  dependency-security:
+    name: Dependency security policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: No production advisory may ship
+        run: npm run audit:production
+      - name: Development findings must be explicitly reviewed and unexpired
+        run: npm run audit:development
+
+  reproducibility:
+    name: Byte-for-byte reproducibility
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run release:reproducible
+
+  unsigned-release:
+    name: Audited unsigned release set
+    needs: [quality, dependency-security, reproducibility]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run release:quick
+      - run: npm run release:verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tab-leak-guard-unsigned-${{ github.sha }}
+          path: artifacts/releases/**
+          if-no-files-found: error
+          retention-days: 30

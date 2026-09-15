@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="popupDocumentTitle">Tab Leak Guard</title>
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <header class="topbar">
+        <div class="brand">
+          <img src="../../icons/icon-48.png" width="38" height="38" alt="">
+          <div>
+            <p class="eyebrow" data-i18n="extensionName">Tab Leak Guard</p>
+            <h1 data-i18n="popupHeading">Resource monitor</h1>
+          </div>
+        </div>
+        <button
+          id="settings"
+          class="icon-button quiet"
+          type="button"
+          data-i18n-title="openSettings"
+          data-i18n-aria-label="openSettings"
+        >⚙</button>
+      </header>
+
+      <section id="monitoring-state" class="monitoring-state" aria-labelledby="monitoring-state-title">
+        <div>
+          <strong id="monitoring-state-title" data-i18n="checkingMonitoring">Checking monitoring…</strong>
+          <p id="monitoring-state-description"></p>
+        </div>
+        <button id="state-action" class="quiet small" type="button" hidden></button>
+      </section>
+
+      <section id="permission-card" class="permission-card" hidden>
+        <div>
+          <strong data-i18n="continuousMonitoringOff">Continuous monitoring is off</strong>
+          <p data-i18n="permissionCardDescription">Grant website access to monitor regular websites, or start a private 15-minute session for this tab.</p>
+        </div>
+        <div class="permission-actions">
+          <button id="enable-monitoring" class="primary" type="button" data-i18n="enableMonitoring">Enable monitoring</button>
+          <button id="scan-active" class="quiet" type="button" data-i18n="monitorFor15Minutes">Monitor for 15 minutes</button>
+        </div>
+      </section>
+
+      <section class="summary" aria-label="Monitoring summary" data-i18n-aria-label="monitoringSummary">
+        <div><strong id="confirmed-count">0</strong><span data-i18n="summaryLikely">Likely runaway</span></div>
+        <div><strong id="watching-count">0</strong><span data-i18n="summaryElevated">Elevated</span></div>
+        <div><strong id="stable-count">0</strong><span data-i18n="summaryLearningStable">Learning or stable</span></div>
+      </section>
+
+      <div id="message" class="notice" hidden></div>
+      <p id="live-summary" class="sr-only" role="status" aria-live="polite"></p>
+
+      <section class="tabs-section" aria-labelledby="tabs-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="liveAnalysis">Live analysis</p>
+            <h2 id="tabs-heading" data-i18n="monitoredTabs">Monitored tabs</h2>
+          </div>
+          <button id="refresh" class="quiet small" type="button" data-i18n="refresh">Refresh</button>
+        </div>
+        <div id="tab-list" class="tab-list"></div>
+      </section>
+
+      <footer>
+        <span data-i18n="localAnalysisFooter">Local analysis · no browsing data sent</span>
+        <button id="scan-active-footer" class="link-button" type="button" data-i18n="monitorActive15">Monitor active tab for 15 minutes</button>
+      </footer>
+    </main>
+
+    <dialog
+      id="recovery-dialog"
+      class="recovery-dialog"
+      aria-labelledby="recovery-dialog-title"
+      aria-describedby="recovery-effect recovery-target recovery-expiry"
+    >
+      <div class="dialog-heading">
+        <p class="eyebrow" data-i18n="reviewRecoveryEyebrow">Review recovery</p>
+        <h2 id="recovery-dialog-title"></h2>
+      </div>
+      <p id="recovery-target" class="dialog-target"></p>
+      <p id="recovery-effect" class="dialog-effect"></p>
+      <div class="dialog-warning" role="note">
+        <strong data-i18n="beforeContinuing">Before continuing</strong>
+        <ul id="recovery-warnings"></ul>
+      </div>
+      <label id="edit-ack-row" class="acknowledgement" hidden>
+        <input id="edit-ack" type="checkbox">
+        <span data-i18n="acknowledgeEditRisk">I understand that edited or unsaved page state may be lost.</span>
+      </label>
+      <p id="recovery-expiry" class="expiry"></p>
+      <p id="dialog-live" class="sr-only" role="status" aria-live="polite"></p>
+      <div class="dialog-actions">
+        <button id="recovery-cancel" class="quiet" type="button" data-i18n="cancel">Cancel</button>
+        <button id="recovery-execute" class="primary" type="button"></button>
+      </div>
+    </dialog>
+
+    <script src="index.js"></script>
+  </body>
+</html>

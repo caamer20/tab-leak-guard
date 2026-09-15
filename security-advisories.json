@@ -1,0 +1,16 @@
+{
+  "reviewedAt": "2026-08-30",
+  "reviewAgainBy": "2026-11-30",
+  "allowedDevelopmentAdvisories": [
+    {
+      "id": "GHSA-w3rx-r6r6-pgpr",
+      "package": "image-size",
+      "reason": "Transitive web-ext/addons-linter parser denial of service; release jobs process only reviewed repository-owned images and run with timeouts. It is not shipped."
+    },
+    {
+      "id": "GHSA-5p2g-fcmc-qvqq",
+      "package": "image-size",
+      "reason": "Transitive web-ext/addons-linter parser denial of service; release jobs process only reviewed repository-owned images and run with timeouts. It is not shipped."
+    }
+  ]
+}

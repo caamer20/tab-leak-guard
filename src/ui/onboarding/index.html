@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="welcomeDocumentTitle">Welcome to Tab Leak Guard</title>
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="intro" aria-labelledby="welcome-heading">
+        <img src="../../icons/icon-96.png" width="78" height="78" alt="">
+        <p class="eyebrow" data-i18n="privacyFirstRecovery">Privacy-first tab recovery</p>
+        <h1 id="welcome-heading" data-i18n="welcomeHeading">Spot sustained tab growth before it takes over Firefox.</h1>
+        <p class="lede" data-i18n="welcomeDescription">Tab Leak Guard learns a page’s normal behavior, looks for sustained resource-growth patterns, and explains evidence it can observe. It does not measure exact memory.</p>
+        <div id="message" class="notice" hidden></div>
+        <fieldset class="scope-choice">
+          <legend data-i18n="chooseMonitoringScope">Choose how monitoring starts</legend>
+          <label>
+            <input type="radio" name="scope" value="manual" checked>
+            <span><strong data-i18n="manualOnlyChoice">Manual only</strong><small data-i18n="manualOnlyChoiceDescription">Start a private 15-minute session from the toolbar on a regular website.</small></span>
+          </label>
+          <label>
+            <input type="radio" name="scope" value="selected-sites">
+            <span><strong data-i18n="selectedSiteChoice">One selected site</strong><small data-i18n="selectedSiteChoiceDescription">Grant continuous access to one exact HTTP or HTTPS origin. Add more later in settings.</small></span>
+          </label>
+          <div id="selected-site-entry" class="selected-site-entry" hidden>
+            <label for="selected-site-origin" data-i18n="siteAddressLabel">Site address</label>
+            <input id="selected-site-origin" type="text" inputmode="url" autocomplete="url" data-i18n-placeholder="siteAddressPlaceholder" placeholder="https://example.com">
+          </div>
+          <label>
+            <input type="radio" name="scope" value="all-sites">
+            <span><strong data-i18n="allSitesChoice">All regular websites</strong><small data-i18n="allSitesChoiceDescription">Ask Firefox for optional HTTP and HTTPS access and monitor eligible tabs continuously.</small></span>
+          </label>
+        </fieldset>
+        <div class="actions">
+          <button id="continue" class="primary" type="button" data-i18n="continueButton">Continue</button>
+        </div>
+        <p class="tiny" data-i18n="onboardingSafetyNote">Recovery is notify-only. Automatic recovery is unavailable while safety validation is in progress.</p>
+
+        <section id="success" class="success-panel" tabindex="-1" hidden aria-labelledby="success-heading">
+          <h2 id="success-heading" data-i18n="setupComplete">Setup complete</h2>
+          <p id="success-description"></p>
+          <div class="actions">
+            <button id="open-settings" class="primary" type="button" data-i18n="openSettings">Open settings</button>
+          </div>
+          <p class="tiny" data-i18n="toolbarGuidance">Pin Tab Leak Guard to the Firefox toolbar to start sessions and review findings quickly.</p>
+        </section>
+      </section>
+
+      <section class="explain" aria-label="How Tab Leak Guard works" data-i18n-aria-label="howItWorks">
+        <article><span aria-hidden="true">01</span><div><h2 data-i18n="observeTrends">Observe trends</h2><p data-i18n="observeTrendsDescription">Tracks live DOM retention, resource activity, and responsiveness. It never reads page text or form values.</p></div></article>
+        <article><span aria-hidden="true">02</span><div><h2 data-i18n="requireEvidence">Require evidence</h2><p data-i18n="requireEvidenceDescription">Builds a baseline for about five minutes and looks for sustained growth—not one large page update.</p></div></article>
+        <article><span aria-hidden="true">03</span><div><h2 data-i18n="reviewRecovery">Review recovery</h2><p data-i18n="reviewRecoveryDescription">Prepares an exact unload or reload action, checks the current page again, and asks for your consent.</p></div></article>
+        <aside><strong data-i18n="importantLimitation">Important limitation</strong><p data-i18n="limitationDescription">Firefox does not expose exact per-tab memory to standard extensions. Tab Leak Guard reports possible retained-DOM growth patterns and clearly marks missing or stale evidence.</p></aside>
+      </section>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>

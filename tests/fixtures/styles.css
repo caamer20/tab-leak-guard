@@ -1,0 +1,33 @@
+:root { color-scheme: dark; font: 15px/1.5 ui-sans-serif, system-ui, sans-serif; color: #eaf2ff; background: #0c1422; }
+* { box-sizing: border-box; }
+body { margin: 0; background: radial-gradient(circle at 0 0, #1b3154, transparent 45rem), #0c1422; min-height: 100vh; }
+header, main, .index-shell { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 32px 0 24px; border-bottom: 1px solid #2a3b55; }
+h1, h2, p { margin: 0; }
+h1 { font-size: 38px; letter-spacing: -.03em; }
+h2 { font-size: 18px; }
+a { color: #79efd0; }
+.eyebrow { color: #79efd0; text-transform: uppercase; font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+header p:last-child, .lede { color: #a9b7cb; }
+main { padding: 24px 0 60px; }
+.dashboard { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.dashboard div { padding: 14px; border: 1px solid #293b57; border-radius: 13px; background: rgba(20,31,50,.82); }
+.dashboard span { display: block; color: #8fa0b7; font-size: 11px; }
+.dashboard strong { font-size: 20px; }
+.controls { display: flex; gap: 8px; margin: 18px 0; }
+button { border: 0; border-radius: 9px; padding: 9px 12px; color: #0b1720; background: #79efd0; font-weight: 800; cursor: pointer; }
+.arena { min-height: 120px; max-height: 360px; overflow: auto; padding: 12px; border: 1px dashed #385071; border-radius: 13px; }
+.fixture-row { padding: 2px 5px; border-left: 2px solid #5d7dff; color: #b8c8dd; }
+.form-zone, .log { margin-top: 18px; padding: 16px; border: 1px solid #293b57; border-radius: 13px; background: rgba(20,31,50,.72); }
+textarea { display: block; width: 100%; min-height: 100px; margin-top: 8px; padding: 10px; color: #eaf2ff; background: #0b1423; border: 1px solid #3a4d6b; border-radius: 8px; }
+.log ol { max-height: 160px; overflow: auto; color: #9eb0c8; }
+.index-page { display: grid; place-items: center; }
+.index-shell { padding: 60px 0; }
+.index-shell h1 { font-size: 58px; }
+.lede { max-width: 720px; margin: 14px 0 30px; font-size: 18px; }
+code { color: #79efd0; }
+.fixture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.fixture-grid a { display: grid; gap: 4px; padding: 18px; text-decoration: none; color: #eaf2ff; border: 1px solid #293b57; border-radius: 14px; background: rgba(20,31,50,.82); }
+.fixture-grid a:hover { border-color: #79efd0; transform: translateY(-1px); }
+.fixture-grid span { color: #95a7c0; font-size: 12px; }
+@media (max-width: 800px) { .dashboard { grid-template-columns: repeat(2, 1fr); } .fixture-grid { grid-template-columns: 1fr; } }

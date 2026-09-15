@@ -1,0 +1,42 @@
+{
+  "name": "firefox-tab-leak-guard",
+  "version": "0.1.1",
+  "private": true,
+  "description": "A privacy-first Firefox extension that detects sustained tab resource growth and safely resets affected tabs.",
+  "type": "module",
+  "packageManager": "npm@11.4.2",
+  "engines": {
+    "node": ">=24.2.0"
+  },
+  "scripts": {
+    "build": "npm run build:production",
+    "build:production": "node scripts/build.mjs --mode production --out-dir dist",
+    "build:review": "node scripts/build.mjs --mode review --out-dir dist-review",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint:webext": "npm run build:production && web-ext lint --source-dir dist",
+    "smoke:headless": "node scripts/headless-smoke.mjs",
+    "check:version": "node scripts/check-version.mjs",
+    "audit:package": "node scripts/audit-package.mjs dist",
+    "audit:production": "npm audit --omit=dev --audit-level=low",
+    "audit:development": "node scripts/audit-development.mjs",
+    "package": "npm run release",
+    "release": "node scripts/release.mjs",
+    "release:quick": "node scripts/release.mjs --skip-verify",
+    "release:verify": "node scripts/verify-release.mjs",
+    "release:reproducible": "node scripts/check-reproducibility.mjs",
+    "fixtures": "node scripts/serve-fixtures.mjs",
+    "verify": "npm run check:version && npm run check && npm run test && npm run test:coverage && npm run lint:webext && npm run audit:package"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^143.0.0",
+    "@types/node": "^26.4.0",
+    "@vitest/coverage-v8": "^4.1.11",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11",
+    "web-ext": "^10.6.0"
+  }
+}

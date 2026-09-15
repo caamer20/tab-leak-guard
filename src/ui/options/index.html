@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="settingsDocumentTitle">Tab Leak Guard settings</title>
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap hero-inner">
+        <div class="brand-block">
+          <img src="../../icons/icon-96.png" width="58" height="58" alt="">
+          <div>
+            <p class="eyebrow" data-i18n="extensionName">Tab Leak Guard</p>
+            <h1 data-i18n="settingsHeading">Settings & safety</h1>
+            <p data-i18n="settingsSubheading">Conservative defaults, local analysis, and controls you can reverse.</p>
+          </div>
+        </div>
+        <span id="permission-state" class="status-pill" data-i18n="checkingAccess">Checking access</span>
+      </div>
+    </header>
+
+    <main class="wrap grid">
+      <div id="message" class="notice full" hidden></div>
+
+      <section class="panel full access-panel" aria-labelledby="access-heading">
+        <div>
+          <p class="eyebrow" data-i18n="websiteAccessEyebrow">Website access</p>
+          <h2 id="access-heading" data-i18n="continuousMonitoring">Continuous monitoring</h2>
+          <p class="muted" data-i18n="websiteAccessDescription">Optional access lets a small local collector run on regular HTTP and HTTPS pages. Manual 15-minute sessions work without broad access.</p>
+          <p id="permission-detail" class="scope-detail"></p>
+        </div>
+        <div class="row-actions">
+          <button id="grant-access" class="primary" type="button" data-i18n="grantAllSiteAccess">Grant all-site access</button>
+          <button id="remove-access" class="danger" type="button" data-i18n="removeWebsiteAccess">Remove website access</button>
+        </div>
+      </section>
+
+      <section class="panel full selected-access" aria-labelledby="selected-access-heading">
+        <div>
+          <p class="eyebrow" data-i18n="selectedSitesEyebrow">Selected sites</p>
+          <h2 id="selected-access-heading" data-i18n="selectedSitesHeading">Limit continuous monitoring to selected sites</h2>
+          <p class="muted" data-i18n="selectedSitesDescription">Add an HTTP or HTTPS site. Firefox will show a permission prompt for that exact origin, and other sites stay manual-only.</p>
+        </div>
+        <form id="selected-origin-form" class="origin-form">
+          <label for="selected-origin" data-i18n="siteAddressLabel">Site address</label>
+          <div>
+            <input id="selected-origin" type="text" inputmode="url" autocomplete="url" data-i18n-placeholder="siteAddressPlaceholder" placeholder="https://example.com">
+            <button id="add-selected-origin" class="primary" type="submit" data-i18n="addSelectedSite">Add selected site</button>
+          </div>
+        </form>
+        <p id="selected-origin-guidance" class="tiny"></p>
+        <div id="selected-origin-list" class="list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="behavior-heading">
+        <p class="eyebrow" data-i18n="behaviorEyebrow">Behavior</p>
+        <h2 id="behavior-heading" data-i18n="monitoringHeading">Monitoring</h2>
+        <label class="switch-row">
+          <span><strong data-i18n="monitorContinuously">Monitor continuously</strong><small data-i18n="monitorContinuouslyDescription">Sample eligible tabs only while permission is granted.</small></span>
+          <input id="monitoring-enabled" type="checkbox">
+        </label>
+        <label class="switch-row">
+          <span><strong data-i18n="systemNotifications">System notifications</strong><small data-i18n="systemNotificationsDescription">The toolbar badge remains available when notifications are off.</small></span>
+          <input id="notifications-enabled" type="checkbox">
+        </label>
+        <label class="field">
+          <span data-i18n="notificationContent">Notification content</span>
+          <select id="notification-content">
+            <option value="generic" data-i18n="genericNotifications">Generic, lock-screen-safe (recommended)</option>
+            <option value="site" data-i18n="siteNotifications">Include the site hostname</option>
+          </select>
+        </label>
+        <div class="fixed-setting">
+          <strong data-i18n="recoveryNotifyOnly">Recovery: notify only</strong>
+          <p data-i18n="automaticRecoveryUnavailable">Automatic recovery is hidden and unavailable while its safety gates are being validated. Every unload or reload requires your review.</p>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="tuning-heading">
+        <p class="eyebrow" data-i18n="tuningEyebrow">Tuning</p>
+        <h2 id="tuning-heading" data-i18n="samplingConfidence">Sampling & confidence</h2>
+        <label class="field">
+          <span><span data-i18n="visibleSampleInterval">Visible tab sample interval</span> <output id="visible-output"></output></span>
+          <input id="visible-seconds" type="range" min="10" max="120" step="5">
+        </label>
+        <label class="field">
+          <span><span data-i18n="hiddenSampleInterval">Hidden tab sample interval</span> <output id="hidden-output"></output></span>
+          <input id="hidden-seconds" type="range" min="30" max="300" step="15">
+        </label>
+        <label class="field">
+          <span><span data-i18n="quietPeriod">Quiet period before recovery is suggested</span> <output id="quiet-output"></output></span>
+          <input id="quiet-minutes" type="range" min="1" max="30" step="1">
+        </label>
+        <label class="field">
+          <span><span data-i18n="confirmationThreshold">Confirmation threshold</span> <output id="score-output"></output></span>
+          <input id="confirmation-score" type="range" min="70" max="95" step="1">
+        </label>
+        <button id="save" class="primary save" type="button" data-i18n="saveSettings">Save settings</button>
+      </section>
+
+      <section class="panel" aria-labelledby="site-policy-heading">
+        <div class="section-head">
+          <div><p class="eyebrow" data-i18n="sitePolicyEyebrow">Site policy</p><h2 id="site-policy-heading" data-i18n="siteExceptions">Site exceptions</h2></div>
+          <span id="ignored-count" class="count">0</span>
+        </div>
+        <p class="muted" data-i18n="sitePolicyDescription">Ignoring a site stops its collectors and removes its current findings. Monitoring, notifications, and future recovery permission are stored as separate policies.</p>
+        <div id="policy-list" class="list" aria-label="Site policies" data-i18n-aria-label="sitePolicies"></div>
+        <h3 class="subheading" data-i18n="ignoredSites">Ignored sites</h3>
+        <div id="ignored-list" class="list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="history-heading">
+        <div class="section-head">
+          <div><p class="eyebrow" data-i18n="localHistoryEyebrow">Local history</p><h2 id="history-heading" data-i18n="recoveryReceipts">Recovery receipts</h2></div>
+          <button id="clear-receipts" class="quiet" type="button" data-i18n="clearReceipts">Clear receipts</button>
+        </div>
+        <p class="muted" data-i18n="receiptDescription">A local record of requested outcomes—not an estimate of recovered memory.</p>
+        <label class="field compact-field">
+          <span data-i18n="receiptRetention">Receipt retention</span>
+          <select id="history-retention">
+            <option value="0" data-i18n="retainNoReceipts">Do not retain receipts</option>
+            <option value="24" data-i18n="retainOneDay">Keep for 24 hours</option>
+            <option value="168" data-i18n="retainSevenDays">Keep for 7 days</option>
+          </select>
+        </label>
+        <div id="receipt-list" class="list receipts"></div>
+      </section>
+
+      <section class="panel full facts" aria-labelledby="privacy-heading">
+        <p class="eyebrow" data-i18n="privacyLimitationsEyebrow">Privacy & limitations</p>
+        <h2 id="privacy-heading" data-i18n="whatExtensionKnows">What this extension knows</h2>
+        <div class="fact-grid">
+          <div><strong data-i18n="observedHeading">Observed</strong><p data-i18n="observedDescription">Live DOM growth, mutation retention, resource activity, visible responsiveness, tab state, and an edited-input state—not the input itself.</p></div>
+          <div><strong data-i18n="neverReadHeading">Never read</strong><p data-i18n="neverReadDescription">Form values, page text, cookies, request bodies, browsing history, screenshots, or account identifiers.</p></div>
+          <div><strong data-i18n="notAvailableHeading">Not available</strong><p data-i18n="notAvailableDescription">Exact per-tab memory, detached-DOM size, pure JavaScript heap usage, GPU memory, and Firefox internal pages.</p></div>
+        </div>
+        <p class="privacy-note" data-i18n="localOnlyPrivacy">Findings and receipts stay in Firefox extension storage. Notification text is generic by default so a lock screen does not reveal the site.</p>
+      </section>
+
+      <section class="panel full data-controls" aria-labelledby="data-heading">
+        <div>
+          <p class="eyebrow" data-i18n="yourDataEyebrow">Your data</p>
+          <h2 id="data-heading" data-i18n="localDataControls">Local data controls</h2>
+          <p class="muted" data-i18n="localDataControlsDescription">Export a redacted diagnostic file for troubleshooting, or delete settings, findings, receipts, and pending actions from extension storage.</p>
+        </div>
+        <div class="row-actions">
+          <button id="export-diagnostics" class="quiet" type="button" data-i18n="exportRedactedDiagnostics">Export redacted diagnostics</button>
+          <button id="delete-all-data" class="danger" type="button" data-i18n="deleteAllLocalData">Delete all local data</button>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="delete-dialog" class="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-description">
+      <p class="eyebrow" data-i18n="confirmDeletionEyebrow">Confirm deletion</p>
+      <h2 id="delete-dialog-title" tabindex="-1" data-i18n="deleteEverythingStored">Delete everything stored by Tab Leak Guard?</h2>
+      <p id="delete-dialog-description" data-i18n="deleteEverythingDescription">This removes settings, findings, receipts, site policies, snoozes, and pending recovery actions. Firefox website permissions are managed separately and are not removed.</p>
+      <label class="delete-acknowledgement">
+        <input id="delete-ack" type="checkbox">
+        <span data-i18n="deleteAcknowledgement">I understand that this local extension data cannot be restored.</span>
+      </label>
+      <div class="dialog-actions">
+        <button id="delete-cancel" class="quiet" type="button" data-i18n="cancel">Cancel</button>
+        <button id="delete-confirm" class="danger" type="button" disabled data-i18n="deleteDataNow">Delete data now</button>
+      </div>
+    </dialog>
+
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-review/
+artifacts/
+coverage/
+.DS_Store
+*.log
+web-ext-artifacts/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.codex/

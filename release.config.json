@@ -1,0 +1,28 @@
+{
+  "extensionId": "tab-leak-guard@local.invalid",
+  "distributionChannel": "listed-amo",
+  "automaticRecoveryQuarantined": true,
+  "productionDirectory": "dist",
+  "reviewDirectory": "dist-review",
+  "releaseDirectory": "artifacts/releases",
+  "sourceRoots": [".github", "docs", "release-notes", "scripts", "src", "tests"],
+  "sourceFiles": [
+    ".gitattributes",
+    ".gitignore",
+    ".nvmrc",
+    "AMO_SOURCE_SUBMISSION.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "IMPLEMENTATION_PLAN.md",
+    "IMPROVEMENT_PLAN.md",
+    "LICENSE",
+    "README.md",
+    "SECURITY.md",
+    "package-lock.json",
+    "package.json",
+    "release.config.json",
+    "security-advisories.json",
+    "tsconfig.json",
+    "vitest.config.ts"
+  ]
+}
