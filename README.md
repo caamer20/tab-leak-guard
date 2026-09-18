@@ -14,7 +14,7 @@
 
 Tab Leak Guard is a Firefox extension that watches for sustained resource-growth patterns, explains concerning tabs, and lets you review an unload or reload before it happens. Analysis stays in your browser. There are no analytics, accounts, or runtime network services.
 
-**Status:** version 0.1.1 is approved and publicly available on Firefox Add-ons. Version 0.1.2 fixes a toolbar popup sizing regression and is being prepared for submission. Broader browser validation remains pending. Automatic recovery is disabled; every recovery action requires your confirmation.
+**Status:** version 0.1.1 is approved and publicly available on Firefox Add-ons. Version 0.1.2 fixes a toolbar popup sizing regression and has been submitted to Mozilla; it is awaiting review. Broader browser validation remains pending. Automatic recovery is disabled; every recovery action requires your confirmation.
 
 [Cameron Amer](https://www.cameronamer.com) · [Getting started](#getting-started) · [How it works](#how-it-works) · [Development](#development) · [Privacy](docs/privacy.md) · [Contributing](CONTRIBUTING.md)
 
@@ -42,7 +42,7 @@ Pure JavaScript heap leaks, detached DOM, workers, GPU/media allocations, and br
 
 ## Getting started
 
-Install the signed extension from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/tab-leak-guard/). Version 0.1.1 is currently public; a popup-sizing fix is being prepared in 0.1.2. See the [0.1.1 submission record](docs/evidence/0.1.1-amo-submission.md).
+Install the signed extension from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/tab-leak-guard/). Version 0.1.1 is currently public; the popup-sizing fix in 0.1.2 is awaiting Mozilla review. See the [0.1.2 submission record](docs/evidence/0.1.2-amo-submission.md).
 
 To try the candidate locally:
 
