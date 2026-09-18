@@ -3,7 +3,7 @@
 ## Prepare
 
 1. Start from a reviewed, clean commit. Confirm `package.json`, `package-lock.json`, `src/manifest.json`, changelog, and release notes use the same version.
-2. Confirm `AUTOMATIC_RECOVERY_AVAILABLE` is `false` for 0.1.1 and the extension ID is unchanged.
+2. Confirm `AUTOMATIC_RECOVERY_AVAILABLE` is `false` and the extension ID is unchanged.
 3. Run `npm ci`, then `npm run release:reproducible`.
 4. Run `npm run release`. The command performs version checks, type checking, all tests and coverage, Mozilla lint, production package audit, and generates the release set under `artifacts/releases/<version>/`.
 5. Run `npm run release:verify`. Review `SHA256SUMS`, the content manifest, CycloneDX SBOM, and unsigned ZIP contents.

@@ -1,6 +1,6 @@
 # Mozilla source review instructions
 
-Version: 0.1.1
+Version: 0.1.2
 
 This source archive contains everything required to reproduce the submitted Tab Leak Guard unsigned extension. The extension has no runtime package dependencies. TypeScript entry points are bundled with locked esbuild tooling; production output is intentionally unminified and excludes source maps. A separate review build includes linked source maps for inspection.
 
@@ -23,11 +23,11 @@ npm run release
 npm run release:verify
 ```
 
-`npm run release` writes to `artifacts/releases/0.1.1/`:
+`npm run release` writes to `artifacts/releases/0.1.2/`:
 
-- `tab-leak-guard-0.1.1-unsigned.zip` — production signing candidate, no source maps;
-- `tab-leak-guard-0.1.1-review.zip` — inspection build with linked source maps, not for user distribution;
-- `tab-leak-guard-0.1.1-source.zip` — deterministic reviewer source;
+- `tab-leak-guard-0.1.2-unsigned.zip` — production signing candidate, no source maps;
+- `tab-leak-guard-0.1.2-review.zip` — inspection build with linked source maps, not for user distribution;
+- `tab-leak-guard-0.1.2-source.zip` — deterministic reviewer source;
 - content manifest, CycloneDX SBOM, release notes, and `SHA256SUMS`.
 
 Run `npm run release:reproducible` to generate the complete set twice in independent temporary directories and compare every file byte-for-byte. ZIP entries are sorted and use fixed 1980-01-01 metadata. The content manifest records every unpacked production/review file hash and the package-lock hash.
@@ -43,4 +43,4 @@ The review ZIP differs only by linked source maps and their references; it is no
 
 ## Safety state
 
-Version 0.1.1 is notify/manual only. `src/shared/constants.ts` sets `AUTOMATIC_RECOVERY_AVAILABLE` to `false`, and the version check enforces that release invariant. No remote service can change it.
+Version 0.1.2 is notify/manual only. `src/shared/constants.ts` sets `AUTOMATIC_RECOVERY_AVAILABLE` to `false`, and the version check enforces that release invariant. No remote service can change it.

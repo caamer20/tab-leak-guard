@@ -6,6 +6,7 @@ import { FirefoxDesktopExtensionRunner } from "../node_modules/web-ext/lib/exten
 import * as firefoxApp from "../node_modules/web-ext/lib/firefox/index.js";
 import { connectWithMaxRetries } from "../node_modules/web-ext/lib/firefox/remote.js";
 import { root } from "./release-utils.mjs";
+import { checkFirefoxPopup } from "./firefox-popup-check.mjs";
 
 const firefoxBinary = process.env.FIREFOX_BINARY ?? (
   process.platform === "darwin"
@@ -58,6 +59,7 @@ if (versionProbe.status !== 0) {
 }
 const firefoxVersion = `${versionProbe.stdout}${versionProbe.stderr}`.trim();
 const fixturePort = await freePort();
+const marionettePort = await freePort();
 const fixtureUrl = `http://127.0.0.1:${fixturePort}/`;
 let fixtureOutput = "";
 const fixture = spawn(process.execPath, [resolve(root, "scripts/serve-fixtures.mjs")], {
@@ -72,9 +74,9 @@ let runner;
 try {
   await waitForFixture(fixtureUrl, () => fixtureOutput.trim());
   runner = new FirefoxDesktopExtensionRunner({
-    args: ["-headless"],
+    args: ["-headless", "--marionette", "--remote-allow-system-access"],
     browserConsole: false,
-    customPrefs: {},
+    customPrefs: { "marionette.port": marionettePort },
     devtools: false,
     extensions: [{ sourceDir: resolve(root, "dist"), manifestData: manifest }],
     firefoxApp,
@@ -108,6 +110,8 @@ try {
     throw new Error(`Firefox did not expose the fixture tab at ${fixtureUrl}`);
   })(), 12_000, "Fixture tab lookup");
 
+  const popup = await withTimeout(checkFirefoxPopup(marionettePort, expectedId), 35_000, "Toolbar popup layout");
+
   await withTimeout(remote.reloadAddon(expectedId), 10_000, "Temporary add-on reload");
   const reloaded = await withTimeout(remote.getInstalledAddon(expectedId), 5_000, "Reloaded add-on lookup");
   if (reloaded.id !== expectedId || reloaded.temporarilyInstalled !== true) {
@@ -123,10 +127,12 @@ try {
     extensionId: expectedId,
     extensionVersion: manifest.version,
     fixtureUrl: fixtureTab.url,
+    popup,
     assertions: [
       "disposable Firefox profile launched headlessly",
       "built manifest has expected version and Firefox installed its expected ID temporarily",
       "local fixture tab loaded",
+      "actual Firefox toolbar popup opens at a usable width and height",
       "temporary add-on reloaded and remained installed"
     ]
   }, null, 2));

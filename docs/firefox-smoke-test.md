@@ -36,7 +36,7 @@ Use `http://127.0.0.1:4173/` only. Record the terminal output and exact URL.
 
 ## Automated headless smoke evidence (separate gate)
 
-The repository's automated headless Firefox run verifies candidate identity/loading, fixture reachability, temporary add-on reload, and clean child-process shutdown. It does **not** inspect collector/background communication or browser-console output, pass any interactive row below, or substitute for permission prompts, OS notifications, keyboard/focus behavior, discard/restore, Browser Toolbox inspection, profile migration, signed update, or real user-gesture checks.
+The repository's automated headless Firefox run verifies candidate identity/loading, fixture reachability, actual toolbar popup dimensions and rendered heading/status/settings control, temporary add-on reload, and clean child-process shutdown. Popup checks use Marionette system access only in the newly created disposable profile. It does **not** inspect collector/background communication or browser-console output, pass any interactive row below, or substitute for permission prompts, OS notifications, keyboard/focus behavior, discard/restore, Browser Toolbox inspection, profile migration, signed update, or real user-gesture checks.
 
 Run only the repository command selected for the frozen candidate, against the same built artifact and a new disposable profile. Do not invent or reconstruct the invocation in the release record: paste the command and result verbatim from the final run. Until that evidence exists, leave the corresponding release-checklist box unchecked.
 
@@ -86,7 +86,7 @@ npm run build:production
 FIREFOX_BINARY=/path/to/firefox npm run smoke:headless
 ```
 
-The script allocates its own localhost fixture port and disposable Firefox profile, validates the built manifest version, verifies Firefox's temporary installation under the exact extension ID through its remote debugging protocol, verifies the fixture tab, reloads the add-on once, and shuts down both child processes. A pass credits only the automated headless-smoke row; it does not exercise or credit the interactive scenarios below. Some Firefox remote-debugging versions omit the add-on version field; when present, the script also requires it to match the built manifest.
+The script allocates its own localhost fixture/debugger ports and disposable Firefox profile, validates the built manifest version, verifies Firefox's temporary installation under the exact extension ID, verifies the fixture tab, opens the real toolbar popup and checks its layout/content, reloads the add-on once, and shuts down both child processes. A pass credits only the automated headless-smoke row; it does not exercise or credit the interactive scenarios below. Some Firefox remote-debugging versions omit the add-on version field; when present, the script also requires it to match the built manifest. The popup harness uses Firefox-internal test interfaces and may need maintenance for future Firefox changes.
 
 ## Smoke sequence
 

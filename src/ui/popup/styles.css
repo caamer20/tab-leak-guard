@@ -1,5 +1,8 @@
 body {
-  width: min(430px, 100vw);
+  /* Firefox derives the popup viewport from the body's preferred width.
+     Viewport units here create a sizing cycle and can collapse it to 16px. */
+  width: 430px;
+  max-width: 100%;
   min-width: 0;
   min-height: 560px;
   overflow-x: hidden;
