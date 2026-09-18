@@ -4,6 +4,12 @@ All notable user-visible and release-engineering changes are recorded here. Vers
 
 ## Unreleased
 
+## 0.1.2 — 2026-09-18
+
+- Fixed the Firefox toolbar popup collapsing to a scrollbar-only panel by removing viewport-dependent body sizing.
+- Added a popup CSS regression test and a disposable-profile Firefox test that opens the actual toolbar popup and verifies its dimensions.
+- No changes to monitoring, permissions, stored data, or recovery behavior. Automatic recovery remains disabled.
+
 - Published the public GitHub repository with installation/development documentation, contribution and issue templates, private vulnerability reporting, and a marketplace submission guide.
 - Updated the development-only `adm-zip` dependency from 0.6.0 to 0.6.1 so the current dependency audit no longer flags GHSA-vwc7-r8mq-g2x9. The extension runtime is unchanged.
 
