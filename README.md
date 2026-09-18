@@ -7,6 +7,10 @@
 <p align="center">Understand sustained tab growth. Review the evidence. Recover on your terms.</p>
 
 <p align="center">
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/tab-leak-guard/"><strong>Install Tab Leak Guard for Firefox</strong></a>
+</p>
+
+<p align="center">
   <a href="https://github.com/caamer20/tab-leak-guard/actions/workflows/ci.yml"><img src="https://github.com/caamer20/tab-leak-guard/actions/workflows/ci.yml/badge.svg" alt="Repository verification"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
   <a href="src/manifest.json"><img src="https://img.shields.io/badge/Firefox-142%2B-FF7139" alt="Firefox 142 or newer"></a>
