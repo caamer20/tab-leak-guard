@@ -1,6 +1,6 @@
 {
   "name": "firefox-tab-leak-guard",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "A privacy-first Firefox extension that detects sustained tab resource growth and safely resets affected tabs.",
   "type": "module",
