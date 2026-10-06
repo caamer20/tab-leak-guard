@@ -31,12 +31,12 @@
     "verify": "npm run check:version && npm run check && npm run test && npm run test:coverage && npm run lint:webext && npm run audit:package"
   },
   "devDependencies": {
-    "@types/firefox-webext-browser": "^143.0.0",
-    "@types/node": "^26.5.1",
-    "@vitest/coverage-v8": "^5.0.1",
+    "@types/firefox-webext-browser": "^143.0.1",
+    "@types/node": "^26.6.4",
+    "@vitest/coverage-v8": "^5.0.3",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2",
     "vitest": "^5.0.1",
-    "web-ext": "^10.6.0"
+    "web-ext": "^10.7.0"
   }
 }
